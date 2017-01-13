@@ -10,7 +10,13 @@ Then can easily package them up with your app, such as:
 
 Add the following to your build's `project/plugins.sbt` file:
 
-    addSbtPlugin("com.scalawilliam" % "maxmind" % "0.1.0")
+    resolvers += Resolver.url(
+      "bintray-ScalaWilliam-sbt-plugins",
+      url("http://dl.bintray.com/scalawilliam/sbt-plugins"))(
+      Resolver.ivyStylePatterns)
+
+    addSbtPlugin("com.scalawilliam" % "sbt-maxmind" % "0.1.0")
+
 
 Make sure to add `geoip-resources` to your `.gitignore`.
 

@@ -7,3 +7,4 @@ enablePlugins(GitVersioning)
 publishMavenStyle := false
 bintrayVcsUrl in ThisBuild := Some("git@github.com:ScalaWilliam/sbt-maxmind.git")
 licenses in ThisBuild += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
+git.useGitDescribe := true
