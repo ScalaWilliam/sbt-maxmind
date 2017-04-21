@@ -1,14 +1,20 @@
 package com.scalawilliam.maxmind
 
-import sbt.IO.{createDirectory, delete, download, gunzip}
+import sbt.IO.{createDirectory, delete, gunzip, transfer}
 import sbt._
 import sbt.Keys.{baseDirectory, streams}
+import sbt.io.Using
 import sbt.{File, TaskKey, taskKey, url}
 
 /**
   * Created by William Narmontas on 13/01/2017.
   */
 object Maxmind {
+
+  private def download(url: URL, to: File) =
+    Using.urlInputStream(url) { inputStream =>
+      transfer(inputStream, to)
+    }
 
   val geoLiteCity: TaskKey[File] = taskKey[File]("GeoLiteCityv6.dat")
   val geoIpAsNum: TaskKey[File] = taskKey[File]("GeoIPASNumv6.dat")
