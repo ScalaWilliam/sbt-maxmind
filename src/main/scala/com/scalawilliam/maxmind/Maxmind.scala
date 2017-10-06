@@ -32,9 +32,10 @@ object Maxmind {
     val resourcesDirectory = (geoResourcesDirectory in ThisBuild).value
     val cityFileGz = resourcesDirectory / "GeoLiteCityv6.dat.gz"
     val cityFile = resourcesDirectory / "GeoLiteCityv6.dat"
+    val s = streams.value
     if (!cityFile.exists()) {
       val cityUrl = "http://geolite.maxmind.com/download/geoip/database/GeoLiteCityv6-beta/GeoLiteCityv6.dat.gz"
-      streams.value.log.info(s"Downloading and decompressing ${cityUrl} to ${cityFile}...")
+      s.log.info(s"Downloading and decompressing ${cityUrl} to ${cityFile}...")
       download(url(cityUrl), cityFileGz)
       gunzip(cityFileGz, cityFile)
       delete(cityFileGz)
@@ -46,10 +47,10 @@ object Maxmind {
     val resourcesDirectory = (geoResourcesDirectory in ThisBuild).value
     val ipFileGz = resourcesDirectory / "GeoIPASNumv6.dat.gz"
     val ipFile = resourcesDirectory / "GeoIPASNumv6.dat"
-
+    val s = streams.value
     if (!ipFile.exists()) {
       val ipUrl = "http://geolite.maxmind.com/download/geoip/database/asnum/GeoIPASNumv6.dat.gz"
-      streams.value.log.info(s"Downloading and decompressing ${ipUrl} to ${ipFile}...")
+      s.log.info(s"Downloading and decompressing ${ipUrl} to ${ipFile}...")
       download(url(ipUrl), ipFileGz)
       gunzip(ipFileGz, ipFile)
       delete(ipFileGz)
